@@ -63,7 +63,7 @@ class Bug: # (the error bug, not the insect bug)
 
 class IllegalCharBug(Bug):
     def __init__(self, details):
-        super().__init__('OMG ILLEGAL CHAR ERROR!111!1 TROLLFACE')      
+        super().__init__('OMG ILLEGAL CHAR ERROR!111!1 TROLLFACE', details)     # im good at naming things
 class Lexer:
 
 
@@ -79,9 +79,13 @@ class Lexer:
         self.current_char = self.text[pos]  if self.pos < len(self.text else None)    
 
 
+
+
     def make_tokens(self):
 
+
         tokens = []     
+
 
         # copy pasting is fun
         while self.current_char != None:
