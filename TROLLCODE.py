@@ -1,7 +1,22 @@
-# half of its code is stolen from stackoverflow and CodePulse pls sub to him hes cool
-# rest is spaggetti code written by me :D
-# unofficial name: TROLLCODE
-# wanna make like a mixture of basic and LOLCODE
+# Name: TROLLCODE
+# Creator: dirtfrosting (watermelon#3749)
+# License: MIT
+
+
+# Update log 
+
+"""
+1.0
+12/03/2021
+published to github
+bug system thingy done
+started working on number logic
+run function done 
+lots of main framework done
+happy with results :D
+
+"""
+
 
 # constants (no 1 million hashtags becuause its 3 lines)
 DIGITS = '0123456789'
@@ -130,9 +145,6 @@ class Lexer:
         return tokens, None
 
 
-
-
-
     def make_number(self):
         num_str = ''    
         dot_count = 0 
@@ -145,17 +157,20 @@ class Lexer:
             else:
                 num_str += self.current_char
 
+
         if dot_count == 0:
             return Token (TT_INT, int(num_str))     
         else:
             return Token(TT_FLOAT, float(num_str))      
 
 
-###############
+###############################
 # RUN TROLLCODE
-################
+###############################
 
 
 def run(text):
     lexer = Lexer(text)
     tokens, error = lexer.make_tokens()
+    
+    return tokens, error
