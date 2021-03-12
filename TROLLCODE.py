@@ -45,7 +45,7 @@ TT_RPAREN    = 'TT_RPAREN' # right parenthesis or however they're spelled
 
 class Token:
 
-    def __init__(self, type_. value):
+    def __init__(self, type_. value=None):
         self.type = type_
         self.value = value
 
@@ -57,30 +57,33 @@ class Token:
 
 
 ###############################
-# Lexer (ooooooooooooo)
+# ERRORS
 ###############################
 
-
-
-
-
-class Bug: # (the error bug, not the insect bug)
+class Error: 
      def __init__(self, bug_name, details):
-         self.bug_name = bug_name
+         self.error_name = error_name
          self.details = details
 
 
     def as_string(self):
         result = f'{self.error_name}: {self.details}'
         return result     
-      
+       
 
 
-class IllegalCharBug(Bug):
+class IllegalCharBug(Bug): # doesnt work for some reason lmao
     def __init__(self, details):
         super().__init__('OMG ILLEGAL CHAR ERROR!111!1 TROLLFACE', details)     # im good at naming things
-class Lexer:
 
+###############################
+# Lexer (cool)
+###############################
+
+
+
+
+class Lexer:
 
     def __init__(self, text):
         self.text = text
@@ -91,7 +94,7 @@ class Lexer:
 
     def advance(self):
         self.pos += 1
-        self.current_char = self.text[pos]  if self.pos < len(self.text else None)    
+        self.current_char = self.text[self.pos]  if self.pos < len(self.text else None)    
 
 
 
@@ -156,6 +159,7 @@ class Lexer:
                 num_str += '.' 
             else:
                 num_str += self.current_char
+            self.advance()    
 
 
         if dot_count == 0:
