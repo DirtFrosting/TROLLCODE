@@ -3,10 +3,7 @@
 # unofficial name: TROLLCODE
 # wanna make like a mixture of basic and LOLCODE
 
-###############################
-# CONSTANTS
-###############################
-
+# constants (no 1 million hashtags becuause its 3 lines)
 DIGITS = '0123456789'
 
 
@@ -14,8 +11,10 @@ DIGITS = '0123456789'
 
 
 ###############################
-# TOKENS
+# tokens and stuff
 ###############################
+
+
 
 # tt stands for token type
 TT_INT       = 'TT_INT' # intiger
@@ -43,10 +42,28 @@ class Token:
 
 
 ###############################
-# LEXER
+# Lexer (ooooooooooooo)
 ###############################
 
 
+
+
+
+class Bug: # (the error bug, not the insect bug)
+     def __init__(self, bug_name, details):
+         self.bug_name = bug_name
+         self.details = details
+
+
+    def as_string(self):
+        result = f'{self.error_name}: {self.details}'
+        return result     
+      
+
+
+class IllegalCharBug(Bug):
+    def __init__(self, details):
+        super().__init__('OMG ILLEGAL CHAR ERROR!111!1 TROLLFACE')      
 class Lexer:
 
 
@@ -96,11 +113,16 @@ class Lexer:
 
             elif self.current_char in ')':
                 tokens.append(Token(TT_RPAREN)) 
-                self.advance()            
+                self.advance()  
+
+            else:
+                #error              
 
 
 
         return tokens
+
+
 
 
     def make_number(self):
@@ -113,10 +135,12 @@ class Lexer:
                 dot_count += 1
                 num_str += '.' 
             else:
-                num_st += self.current_char
+                num_str += self.current_char
 
         if dot_count == 0:
-            return Token (TT_INT, int(num_str))            
+            return Token (TT_INT, int(num_str))     
+        else:
+            return Token(TT_FLOAT, float(num_str))      
 
 
 
